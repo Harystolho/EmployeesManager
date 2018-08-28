@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harystolho.controllers.MainController">
+   <children>
+      <HBox prefHeight="42.0" prefWidth="1200.0">
+         <children>
+            <Button fx:id="newEmployee" mnemonicParsing="false" text="Novo Funcionario">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="newDocument" mnemonicParsing="false" text="Novo Documento">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="createArchive" mnemonicParsing="false" text="Criar Arquivo">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Separator layoutY="39.0" prefHeight="14.0" prefWidth="1200.0" />
+      <FlowPane fx:id="employeeFlow" layoutX="14.0" layoutY="53.0" prefHeight="583.0" prefWidth="1170.0" />
+   </children>
+</Pane>

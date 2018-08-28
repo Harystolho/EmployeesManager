@@ -5,9 +5,9 @@ public class Main {
 	private static IBApplication app;
 
 	public static void main(String[] args) {
-
+		
+		IBUtils.init();
 		new IBApplication().init(args);
-
 	}
 
 	public static IBApplication getApp() {
