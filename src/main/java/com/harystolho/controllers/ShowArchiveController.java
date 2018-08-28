@@ -1,6 +1,7 @@
 package com.harystolho.controllers;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
 
@@ -8,6 +9,7 @@ import com.harystolho.Main;
 import com.harystolho.ib.Archive;
 import com.harystolho.ib.Document;
 import com.harystolho.ib.Employee;
+import com.harystolho.utils.IBDataConverter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class ShowArchiveController {
 
@@ -48,6 +51,8 @@ public class ShowArchiveController {
 	@FXML
 	void initialize() {
 		eventHandlers();
+
+		date.setConverter(new IBDataConverter());
 	}
 
 	private void eventHandlers() {

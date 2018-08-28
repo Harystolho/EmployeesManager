@@ -1,17 +1,20 @@
 package com.harystolho.controllers;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.harystolho.Main;
 import com.harystolho.ib.Archive;
 import com.harystolho.ib.Document;
 import com.harystolho.ib.Employee;
+import com.harystolho.utils.IBDataConverter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class NewArchiveController {
 
@@ -34,6 +37,8 @@ public class NewArchiveController {
 		empl.getItems().addAll(Main.getApp().getMainController().getEmployees());
 		docs.getItems().addAll(Main.getApp().getMainController().getDocuments());
 
+		date.setConverter(new IBDataConverter());
+
 		eventHandlers();
 	}
 
@@ -52,7 +57,7 @@ public class NewArchiveController {
 			Archive arch = new Archive(employee, doc, expDate);
 
 			stage.close();
-			
+
 			Main.getApp().getMainController().addArchive(arch);
 			Main.getApp().getMainController().displayArchives();
 		}
