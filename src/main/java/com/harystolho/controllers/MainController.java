@@ -1,5 +1,7 @@
 package com.harystolho.controllers;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,10 @@ import com.harystolho.ib.Employee;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public class MainController {
 
@@ -64,7 +69,12 @@ public class MainController {
 		});
 
 		createArchive.setOnAction((e) -> {
+			OpenWindow ow = new OpenWindow("Criar Arquivo");
+			ow.load("newArchive.fxml", (c) -> {
+				((NewArchiveController) c).setStage(ow.getStage());
+			});
 
+			ow.openWindow();
 		});
 	}
 
@@ -100,4 +110,41 @@ public class MainController {
 	public void addDocument(Document doc) {
 		documents.add(doc);
 	}
+
+	public void addArchive(Archive arch) {
+		archives.add(arch);
+	}
+
+	public List<Archive> getArchives() {
+		return archives;
+	}
+
+	public void displayArchives() {
+		employeeFlow.getChildren().clear();
+
+		for (Archive arc : archives) {
+			Button archiveButton = createArchiveButton(arc);
+			employeeFlow.getChildren().add(archiveButton);
+		}
+
+	}
+
+	private Button createArchiveButton(Archive arc) {
+		Button b = new Button(arc.toString());
+
+		b.setTextFill(getButtonColor(arc.getExpiryDate()));
+
+		return b;
+	}
+
+	private Paint getButtonColor(LocalDate expiryDate) {
+		if (expiryDate.isBefore(LocalDate.now())) {
+			return Color.RED;
+		} else if (expiryDate.isBefore(LocalDate.now().plus(30, ChronoUnit.DAYS))) {
+			return Color.YELLOW;
+		} else {
+			return Color.GREEN;
+		}
+	}
+
 }

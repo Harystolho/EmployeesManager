@@ -8,7 +8,7 @@ public class Document implements Serializable {
 	private long id = System.currentTimeMillis();
 
 	public Document(String text) {
-		this.setName(name);
+		this.name = text;
 	}
 
 	public String getName() {
