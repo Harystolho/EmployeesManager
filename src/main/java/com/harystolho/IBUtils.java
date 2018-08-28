@@ -12,14 +12,18 @@ import java.util.List;
 
 import javax.print.Doc;
 
+import com.harystolho.ib.Archive;
 import com.harystolho.ib.Document;
 import com.harystolho.ib.Employee;
+
+import javafx.scene.shape.Arc;
 
 public class IBUtils {
 
 	private static final File folder = new File("storage");
 	private static File employeesFile;
 	private static File documentsFile;
+	private static File archivesFile;
 
 	public static void init() {
 		if (!folder.exists()) {
@@ -28,6 +32,7 @@ public class IBUtils {
 
 		employeesFile = new File(folder, "employees.txt");
 		documentsFile = new File(folder, "docs.txt");
+		archivesFile = new File(folder, "archives.txt");
 
 	}
 
@@ -105,6 +110,45 @@ public class IBUtils {
 
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(documentsFile))) {
 			oos.writeObject(documents);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static List<Archive> loadArchivesFromFile() {
+		if (archivesFile.exists()) {
+			List<Archive> archs;
+
+			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivesFile))) {
+				System.out.println("-- Loading Documents --");
+				archs = (List<Archive>) ois.readObject();
+				return archs;
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return new ArrayList<>();
+	}
+
+	public static void saveArchivesToFile(List<Archive> archives) {
+		if (!archivesFile.exists()) {
+			try {
+				archivesFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+		}
+
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivesFile))) {
+			oos.writeObject(archives);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

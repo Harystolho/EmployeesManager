@@ -12,8 +12,9 @@ import com.harystolho.ib.Document;
 import com.harystolho.ib.Employee;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -87,12 +88,14 @@ public class MainController {
 	}
 
 	private void loadArchives() {
-
+		archives = IBUtils.loadArchivesFromFile();
+		displayArchives();
 	}
 
 	public void save() {
 		IBUtils.saveEmployeesToFile(employees);
 		IBUtils.saveDocumentsToFile(documents);
+		IBUtils.saveArchivesToFile(archives);
 	}
 
 	public List<Employee> getEmployees() {
@@ -124,6 +127,11 @@ public class MainController {
 
 		for (Archive arc : archives) {
 			Button archiveButton = createArchiveButton(arc);
+
+			archiveButton.setEffect(new DropShadow(2, 0, 1, Color.BLACK));
+			archiveButton.setStyle("-fx-background-color: #fff;");
+			FlowPane.setMargin(archiveButton, new Insets(12, 7, 10, 7));
+
 			employeeFlow.getChildren().add(archiveButton);
 		}
 
@@ -141,7 +149,7 @@ public class MainController {
 		if (expiryDate.isBefore(LocalDate.now())) {
 			return Color.RED;
 		} else if (expiryDate.isBefore(LocalDate.now().plus(30, ChronoUnit.DAYS))) {
-			return Color.YELLOW;
+			return Color.web("#998100");
 		} else {
 			return Color.GREEN;
 		}

@@ -45,7 +45,8 @@ public class NewArchiveController {
 	}
 
 	private void createEmployee() {
-		if (empl.getSelectionModel().getSelectedItem() != null && docs.getSelectionModel().getSelectedItem() != null) {
+		if (empl.getSelectionModel().getSelectedItem() != null && docs.getSelectionModel().getSelectedItem() != null
+				&& date.getValue() != null) {
 
 			Archive arch = new Archive(empl.getSelectionModel().getSelectedItem(),
 					docs.getSelectionModel().getSelectedItem(), date.getValue());
@@ -59,13 +60,6 @@ public class NewArchiveController {
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
-
-		stage.addEventHandler(KeyEvent.KEY_PRESSED, (e) -> {
-			if (e.getCode() == KeyCode.ENTER) {
-				createEmployee();
-			}
-		});
-
 	}
 
 }
