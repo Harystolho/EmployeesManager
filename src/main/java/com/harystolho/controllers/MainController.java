@@ -25,6 +25,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 
 public class MainController {
 
@@ -153,7 +154,7 @@ public class MainController {
 
 			archiveButton.setEffect(new DropShadow(2, 0, 1, Color.BLACK));
 			archiveButton.setStyle("-fx-background-color: #fff;");
-			FlowPane.setMargin(archiveButton, new Insets(12, 7, 10, 7));
+			FlowPane.setMargin(archiveButton, new Insets(10, 7, 6, 7));
 
 			employeeFlow.getChildren().add(archiveButton);
 		}
@@ -163,6 +164,8 @@ public class MainController {
 	private Button createArchiveButton(Archive arc) {
 		Button b = new Button(arc.toString());
 
+		b.setFont(new Font("Inconsolata", 13));
+		
 		b.setOnAction((e) -> {
 			OpenWindow ow = new OpenWindow(arc.toString());
 			ow.load("showArchive.fxml", (c) -> {
