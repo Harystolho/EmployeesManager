@@ -10,13 +10,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.print.Doc;
-
 import com.harystolho.ib.Archive;
 import com.harystolho.ib.Document;
 import com.harystolho.ib.Employee;
-
-import javafx.scene.shape.Arc;
 
 public class IBUtils {
 

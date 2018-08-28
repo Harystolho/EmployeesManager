@@ -24,4 +24,16 @@ public class Document implements Serializable {
 		return name;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Document) {
+			return this.id == ((Document) obj).getId();
+		}
+		return false;
+	}
+
+	public long getId() {
+		return id;
+	}
+
 }

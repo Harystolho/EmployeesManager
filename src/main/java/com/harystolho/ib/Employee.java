@@ -27,4 +27,13 @@ public class Employee implements Serializable {
 	public String toString() {
 		return name;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Employee) {
+			return this.id == ((Employee) obj).getId();	
+		}
+		return false;
+	}
+
 }

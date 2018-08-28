@@ -1,5 +1,7 @@
 package com.harystolho.controllers;
 
+import java.time.LocalDate;
+
 import com.harystolho.Main;
 import com.harystolho.ib.Archive;
 import com.harystolho.ib.Document;
@@ -9,9 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class NewArchiveController {
@@ -45,17 +44,18 @@ public class NewArchiveController {
 	}
 
 	private void createEmployee() {
-		if (empl.getSelectionModel().getSelectedItem() != null && docs.getSelectionModel().getSelectedItem() != null
-				&& date.getValue() != null) {
+		Employee employee = empl.getSelectionModel().getSelectedItem();
+		Document doc = docs.getSelectionModel().getSelectedItem();
+		LocalDate expDate = date.getValue();
 
-			Archive arch = new Archive(empl.getSelectionModel().getSelectedItem(),
-					docs.getSelectionModel().getSelectedItem(), date.getValue());
+		if (employee != null && doc != null && expDate != null) {
+			Archive arch = new Archive(employee, doc, expDate);
 
+			stage.close();
+			
 			Main.getApp().getMainController().addArchive(arch);
 			Main.getApp().getMainController().displayArchives();
 		}
-
-		stage.close();
 	}
 
 	public void setStage(Stage stage) {

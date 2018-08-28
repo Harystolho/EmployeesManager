@@ -106,12 +106,20 @@ public class MainController {
 		employees.add(empl);
 	}
 
+	public void removeEmployee(Employee empl) {
+		employees.remove(empl);
+	}
+
 	public List<Document> getDocuments() {
 		return documents;
 	}
 
 	public void addDocument(Document doc) {
 		documents.add(doc);
+	}
+
+	public void removeDocument(Document doc) {
+		documents.remove(doc);
 	}
 
 	public void addArchive(Archive arch) {
@@ -122,8 +130,16 @@ public class MainController {
 		return archives;
 	}
 
+	public void removeArchive(Archive arch) {
+		archives.remove(arch);
+	}
+
 	public void displayArchives() {
 		employeeFlow.getChildren().clear();
+
+		archives.sort((o1, o2) -> {
+			return o1.toString().compareTo(o2.toString());
+		});
 
 		for (Archive arc : archives) {
 			Button archiveButton = createArchiveButton(arc);
@@ -139,6 +155,17 @@ public class MainController {
 
 	private Button createArchiveButton(Archive arc) {
 		Button b = new Button(arc.toString());
+
+		b.setOnAction((e) -> {
+			OpenWindow ow = new OpenWindow(arc.toString());
+			ow.load("showArchive.fxml", (c) -> {
+				ShowArchiveController sac = ((ShowArchiveController) c);
+				sac.setStage(ow.getStage());
+				sac.setArchive(arc);
+				sac.show();
+			});
+			ow.openWindow();
+		});
 
 		b.setTextFill(getButtonColor(arc.getExpiryDate()));
 

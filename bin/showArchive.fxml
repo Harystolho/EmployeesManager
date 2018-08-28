@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harystolho.controllers.ShowArchiveController">
+   <children>
+      <TextField fx:id="emplName" alignment="CENTER" editable="false" layoutX="42.0" layoutY="20.0" prefHeight="31.0" prefWidth="319.0" promptText="Nome">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button fx:id="remove" layoutX="148.0" layoutY="328.0" mnemonicParsing="false" text="Remover" textFill="RED" />
+      <TextField fx:id="docName" alignment="CENTER" editable="false" layoutX="42.0" layoutY="64.0" prefHeight="31.0" prefWidth="319.0" promptText="Documento">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <DatePicker fx:id="date" layoutX="98.0" layoutY="109.0" prefHeight="31.0" prefWidth="208.0" />
+      <Button fx:id="plusOneYear" layoutX="205.0" layoutY="153.0" mnemonicParsing="false" text="+1 Ano" />
+      <Button fx:id="plusOneMonth" layoutX="142.0" layoutY="153.0" mnemonicParsing="false" text="+1 Mes" />
+      <Button fx:id="save" layoutX="215.0" layoutY="328.0" mnemonicParsing="false" text="Salvar" textFill="#0084ff" />
+   </children>
+</Pane>

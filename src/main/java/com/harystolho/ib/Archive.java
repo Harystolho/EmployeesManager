@@ -3,7 +3,7 @@ package com.harystolho.ib;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Archive implements Serializable {
+public class Archive implements Serializable{
 
 	private Employee employee;
 	private Document doc;
@@ -35,7 +35,6 @@ public class Archive implements Serializable {
 	public long getId() {
 		return id;
 	}
-
 
 	public LocalDate getExpiryDate() {
 		return expiryDate;
